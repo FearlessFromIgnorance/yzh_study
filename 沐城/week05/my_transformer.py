@@ -75,11 +75,11 @@ class MyLayer(nn.Module):
         if attention_mask is None:
             # 如果用户不传 attention_mask，代码会跳过掩码，此时模型会 attend 到所有位置（包括填充位置，如果存在填充 token 且未提供 mask，会导致错误）。
             # 建议：若无 mask，可以默认为全 1 张量：
-            attention_mask = torch.ones(batch_size, seq_len, device=x.device)
-
+            # 更新：GPT 模型注意力掩码是下三角
+            attention_mask = torch.triu(torch.ones(seq_len, seq_len, device=x.device), diagonal=1).bool()
         if attention_mask is not None:
-            extended_mask = attention_mask.unsqueeze(1).unsqueeze(2)  # [B, 1, 1, S]
-            scores = scores.masked_fill(extended_mask == 0, float("-inf"))
+            # extended_mask = attention_mask.unsqueeze(1).unsqueeze(2)  # [B, 1, 1, S]
+            scores = scores.masked_fill(attention_mask, float("-inf"))
 
         # 第六步：Softmax 与 Dropout
         attn_probs = self.softmax(scores)  # 对最后一个维度（键位置）归一化，形状不变
