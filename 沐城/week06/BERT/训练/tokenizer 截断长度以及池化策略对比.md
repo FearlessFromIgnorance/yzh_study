@@ -12,7 +12,7 @@ python train.py \
   --use_class_weight     # 启用加权 loss
 
 
-cls
+# cls
 
 max_length 128
 python train.py   --pool cls            --epochs 3            --batch_size 32       --max_length 128      --lr 2e-5             --head_lr_mult 5.0    --dropout 0.1         --warmup_ratio 0.1    --grad_accum 1        --use_class_weight
@@ -140,7 +140,7 @@ Epoch 3/3 | train_loss=1.5044 train_acc=0.4888 | val_acc=0.4814 val_macro_f1=0.4
 过长导致很多无效token参与loss计算，对结果有影响。
 过短会截断有效token，也会影响准确率。
 
-mean
+# mean
 python train.py   --pool mean            --epochs 3            --batch_size 32       --max_length 64      --lr 2e-5             --head_lr_mult 5.0    --dropout 0.1         --warmup_ratio 0.1    --grad_accum 1        --use_class_weight
 训练日志：
 使用设备: cuda
@@ -231,7 +231,7 @@ Epoch 3/3 | train_loss=1.4897 train_acc=0.4920 | val_acc=0.4804 val_macro_f1=0.4
   }
 ]
 
-max
+# max
 python train.py   --pool max            --epochs 3            --batch_size 32       --max_length 64      --lr 2e-5             --head_lr_mult 5.0    --dropout 0.1         --warmup_ratio 0.1    --grad_accum 1        --use_class_weight
 训练日志：
 使用设备: cuda
@@ -323,7 +323,7 @@ Epoch 3/3 | train_loss=1.5723 train_acc=0.4690 | val_acc=0.4589 val_macro_f1=0.4
 ]
 
 
-对比：
+# 对比：
 对比不同池化策略：cls / mean / max的效果。
 发现 cls 跟 mean 验证集准确率差别不大，cls略高一点点。
 max 要比前两者低一点点。
