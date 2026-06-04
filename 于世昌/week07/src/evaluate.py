@@ -35,8 +35,8 @@ from dataset import build_label_schema, build_dataloaders
 from model import build_model
 
 ROOT = Path(__file__).parent.parent
-BERT_PATH = ROOT.parent.parent / "pretrain_models" / "bert-base-chinese"
-DATA_DIR = ROOT / "data" / "cluener"
+BERT_PATH = Path("/Users/yushichang/Desktop/ai/bert/bert-base-chinese")
+DATA_DIR = ROOT / "data" / "peoples_daily"
 CKPT_DIR = ROOT / "outputs" / "checkpoints"
 LOG_DIR = ROOT / "outputs" / "logs"
 
