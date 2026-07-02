@@ -5,6 +5,7 @@
 *.ckpt
 *.safetensors
 *.md
+!**/week09/**/*.md
 
 # 输出目录
 outputs/
