@@ -10,7 +10,10 @@ cd E:\npl\workspaces\npl_tran\rag_scratch
 set PYTHONPATH=S:/condaEnvs/py312/Lib/site-packages
 set PYTHONUTF8=1
 
-# 数据已预下载：data/raw/ (530 HTML)
+# 0. 下载原始文档（约 530 页 HTML → data/raw/，首次 ~2 分钟）
+python scripts/download.py               # 下载全部 6 源
+python scripts/download.py --sources book,reference  # 或指定源
+
 # 1. 解析 HTML → JSON
 python scripts/parse.py
 
@@ -155,7 +158,7 @@ rag_scratch/
 ├── .env.example
 ├── docs/{decisions,engineering-issues,project-retrospective}.md
 ├── scripts/
-│   ├── start.ps1, parse.py, build_index.py, check_index.py
+│   ├── start.ps1, download.py, parse.py, build_index.py, check_index.py
 │   ├── query.py, diagnose_retrieval.py
 │   ├── app.py, evaluate.py, generate_questions.py
 │   └── run.sh
